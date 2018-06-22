@@ -60,8 +60,8 @@ class Form extends Component {
               <input type="text" className="form-input" name="company_website" placeholder="Business Website*" />
             </div>
             <div className="flex">
-              <input type="text" className="form-input" name="company_phone" placeholder="Business Phone Number" />
               <input type="text" className="form-input" name="company_zipcode" placeholder="Business Zipcode*" />
+              <input type="text" className="form-input" name="company_phone" placeholder="Phone Number" />
             </div>
           </div>
         )
