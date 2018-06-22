@@ -170,8 +170,6 @@ class Form extends Component {
             return;
         }
 
-        
-
         const fields = {
             'action_user_agent': navigator.userAgent,
             'country': 'United States',
@@ -191,7 +189,7 @@ class Form extends Component {
           const compName = form.company_name
           if (!compName.value.trim()) {
             compName.focus();
-            alert('Please enter your company name.');
+            alert('Please enter your business name.');
             return;
           } else {
             fields['action_company_name'] = compName.value.trim()
@@ -200,7 +198,7 @@ class Form extends Component {
           const compWebsite = form.company_website
           if (!compWebsite.value.trim()) {
             compWebsite.focus();
-            alert('Please enter your company website.');
+            alert('Please enter your business website.');
             return;
           } else {
             fields['action_company_website'] = compWebsite.value.trim()
@@ -209,11 +207,11 @@ class Form extends Component {
           const zip = form.company_zipcode;
           if (!zip.value.trim()) {
               zip.focus();
-              alert('Please enter your Zipcode.');
+              alert('Please enter your business zipcode.');
               return;
           } else if (zip.value.length < 5 || zip.value.length > 5) {
               zip.focus();
-              alert('Please enter a valid Zipcode.');
+              alert('Please enter a valid business zipcode.');
               return;
           } else {
             fields['action_company_zipcode'] = zip.value.trim()
