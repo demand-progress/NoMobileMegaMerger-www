@@ -237,10 +237,21 @@ class Form extends Component {
       const formFlex = document.getElementById("form").getElementsByClassName("flex")
       const firstRow = formFlex[0].getElementsByClassName("form-input")
       const secondRow = formFlex[1].getElementsByClassName("form-input")
-      firstRow[0].value = '';
-      firstRow[1].value = '';
-      secondRow[0].value = '';
-      secondRow[1].value = '';
+      firstRow[0].value = ''
+      firstRow[1].value = ''
+      secondRow[0].value = ''
+      secondRow[1].value = ''
+    }
+
+    clearBusinessForm(){
+      const formFlex = document.getElementById("form").getElementsByClassName("flex")
+      const thirdRow = formFlex[2].getElementsByClassName("form-input")
+      const fourthRow = formFlex[3].getElementsByClassName("form-input")
+      thirdRow[0].value = ''
+      thirdRow[1].value = ''
+      fourthRow[0].value = ''
+      fourthRow[1].value = ''
+      document.getElementById("business").checked = false
     }
 
     sendFormToActionKit(fields) {
@@ -266,11 +277,14 @@ class Form extends Component {
             form.appendChild(input);
         });
 
-        form.submit()
+        // form.submit()
         this.setState(
           { submitted: true }, 
           () => {
             this.clearUserForm()
+            if(document.getElementById("business").checked){
+              this.clearBusinessForm()
+            }
            });   
     }
 
