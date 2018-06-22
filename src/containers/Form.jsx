@@ -75,7 +75,7 @@ class Form extends Component {
           <input type="text" className="form-input" name="name" placeholder="Your Name" />
           <input type="email" className="form-input" name="email" placeholder="Your Email" />
         </div>
-        <div className="flex">
+        <div className="flex" style={{marginBottom: '20px'}}>
           <input type="text" className="form-input" name="street" placeholder="Street Address" />
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
         </div>
@@ -90,15 +90,13 @@ class Form extends Component {
         <strong>Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it. If you own a small business, check this box: 
         </strong>
       </label>
-      <div style={{ marginTop: '10px'}}>
-        <span><i>{this.props.disclaimer}</i></span>
-      </div>
-        <div className="flex">
+        <div className="flex" style={{marginTop: '25px'}}>
           <button className="btn">
             <span>{this.props.formButton}</span>
           </button>
         </div>
       </form>
+      <span><i>{this.props.disclaimer}</i></span>
       <br/><br/>
       </div>
       )
@@ -212,6 +210,16 @@ class Form extends Component {
         this.sendFormToActionKit(fields);
     }
 
+    clearUserForm(){
+      const formFlex = document.getElementById("form").getElementsByClassName("flex")
+      const firstRow = formFlex[0].getElementsByClassName("form-input")
+      const secondRow = formFlex[1].getElementsByClassName("form-input")
+      firstRow[0].value = '';
+      firstRow[1].value = '';
+      secondRow[0].value = '';
+      secondRow[1].value = '';
+    }
+
     sendFormToActionKit(fields) {
         // iFrame
         const iframe = document.createElement('iframe');
@@ -235,20 +243,12 @@ class Form extends Component {
             form.appendChild(input);
         });
 
-        form.submit()
+        // form.submit()
         this.setState(
           { submitted: true }, 
           () => {
-          const formFlex = document.getElementById("form").getElementsByClassName("flex")
-          const firstRow = formFlex[0].getElementsByClassName("form-input")
-          const secondRow = formFlex[1].getElementsByClassName("form-input")
-          firstRow[0].value = '';
-          firstRow[1].value = '';
-          secondRow[0].value = '';
-          secondRow[1].value = '';
-        });
-        
-        
+            this.clearUserForm()
+           });   
     }
 
 }
