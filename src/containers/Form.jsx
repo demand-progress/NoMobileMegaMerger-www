@@ -170,42 +170,7 @@ class Form extends Component {
             return;
         }
 
-        if(document.getElementById("business").checked){
-          const compName = form.company_name
-          if (!compName.value.trim()) {
-            compName.focus();
-            alert('Please enter your company name.');
-            return;
-          }
-
-          const compWebsite = form.company_website
-          if (!compWebsite.value.trim()) {
-            compWebsite.focus();
-            alert('Please enter your company website.');
-            return;
-          }
-
-          const zip = form.company_zipcode;
-          if (!zip.value.trim()) {
-              zip.focus();
-              alert('Please enter your Zipcode.');
-              return;
-          } else if (zip.value.length < 5 || zip.value.length > 5) {
-              zip.focus();
-              alert('Please enter a valid Zipcode.');
-              return;
-          }
-
-          const phone = form.company_phone
-          console.log()
-
-          if(phone.value.trim() && phone.value.trim().length < 10 || /[a-z]/i.test(phone.value)|| phone.value.trim().length > 14){
-            phone.focus();
-            console.log(phone.value.trim().length)
-            alert('Please enter a valid Phone number.');
-            return;
-          }
-        }
+        
 
         const fields = {
             'action_user_agent': navigator.userAgent,
@@ -220,13 +185,51 @@ class Form extends Component {
             'page': CONF.actionKitPageShortName,
             'source': this.state.source || 'website',
             'want_progress': 1,
-            'action_company_name': '',
-            'action_company_website': '',
-            'action_company_zipcode' : '',
-            'action_company_phone' : ''
         };
 
-       
+        if(document.getElementById("business").checked){
+          const compName = form.company_name
+          if (!compName.value.trim()) {
+            compName.focus();
+            alert('Please enter your company name.');
+            return;
+          } else {
+            fields['action_company_name'] = compName.value.trim()
+          }
+
+          const compWebsite = form.company_website
+          if (!compWebsite.value.trim()) {
+            compWebsite.focus();
+            alert('Please enter your company website.');
+            return;
+          } else {
+            fields['action_company_website'] = compWebsite.value.trim()
+          }
+
+          const zip = form.company_zipcode;
+          if (!zip.value.trim()) {
+              zip.focus();
+              alert('Please enter your Zipcode.');
+              return;
+          } else if (zip.value.length < 5 || zip.value.length > 5) {
+              zip.focus();
+              alert('Please enter a valid Zipcode.');
+              return;
+          } else {
+            fields['action_company_zipcode'] = zip.value.trim()
+          }
+
+          const phone = form.company_phone
+          if(phone.value.trim() && phone.value.trim().length < 10 || /[a-z]/i.test(phone.value)|| phone.value.trim().length > 14){
+            phone.focus();
+            console.log(phone.value.trim().length)
+            alert('Please enter a valid Phone number.');
+            return;
+          } else {
+            fields['action_company_phone'] = phone.value.trim()
+          }
+        }
+      
         this.sendFormToActionKit(fields);
     }
 
@@ -263,7 +266,7 @@ class Form extends Component {
             form.appendChild(input);
         });
 
-        // form.submit()
+        form.submit()
         this.setState(
           { submitted: true }, 
           () => {
