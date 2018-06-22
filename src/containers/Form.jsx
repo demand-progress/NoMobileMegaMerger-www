@@ -52,22 +52,6 @@ class Form extends Component {
         </div>
       )
 
-      if(this.state.isBusiness){
-        businessForm = (
-          <div>
-            <div className="flex">
-              <input type="text" className="form-input" name="company_name" placeholder="Business Name*" />
-              <input type="text" className="form-input" name="company_website" placeholder="Business Website*" />
-            </div>
-            <div className="flex">
-              <input type="text" className="form-input" name="company_zipcode" placeholder="Business Zipcode*" />
-              <input type="text" className="form-input" name="company_phone" placeholder="Phone Number" />
-            </div>
-          </div>
-        )
-      }
-
-
       const form = (
         <div>
         <form id="form">
@@ -79,14 +63,18 @@ class Form extends Component {
           <input type="text" className="form-input" name="street" placeholder="Street Address" />
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
         </div>
-        { businessForm }
-        {/* <div style={{marginLeft: '25px'}}>
-        Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it. If you own a small business, check this box:
-        <input id="business" type="checkbox" onClick={ this.business } style={{float: 'right', marginTop: '5px'}}/>
-        </div> */}
-      <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
-
-      <label style={{display:'inline', textIndent:'-15px'}}>
+        <div style={{display: this.state.isBusiness ? 'block' : 'none'}}>
+          <div className="flex">
+            <input type="text" className="form-input" name="company_name" placeholder="Business Name*" />
+            <input type="text" className="form-input" name="company_website" placeholder="Business Website*" />
+          </div>
+          <div className="flex">
+            <input type="text" className="form-input" name="company_zipcode" placeholder="Business Zipcode*" />
+            <input type="text" className="form-input" name="company_phone" placeholder="Phone Number" />
+          </div>
+        </div>
+        <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
+        <label style={{display:'inline', textIndent:'-15px'}}>
         <strong>Check this box if you own a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
         </strong>
       </label>
@@ -145,12 +133,7 @@ class Form extends Component {
 
         const form = evt.target;
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
-        const compName = form.company_name.value.trim()
-        const compWebsite = form.company_website.value.trim()
-        const compZipcode = form.company_zipcode.value.trim()
-        const compPhone = form.company_phone.value.trim()
-  
+        
         const name = form.name;
         if (!name.value.trim()) {
             name.focus();
@@ -186,7 +169,44 @@ class Form extends Component {
             alert('Please enter a valid Zipcode.');
             return;
         }
-        
+
+        if(document.getElementById("business").checked){
+          const compName = form.company_name
+          if (!compName.value.trim()) {
+            compName.focus();
+            alert('Please enter your company name.');
+            return;
+          }
+
+          const compWebsite = form.company_website
+          if (!compWebsite.value.trim()) {
+            compWebsite.focus();
+            alert('Please enter your company website.');
+            return;
+          }
+
+          const zip = form.company_zipcode;
+          if (!zip.value.trim()) {
+              zip.focus();
+              alert('Please enter your Zipcode.');
+              return;
+          } else if (zip.value.length < 5 || zip.value.length > 5) {
+              zip.focus();
+              alert('Please enter a valid Zipcode.');
+              return;
+          }
+
+          const phone = form.company_phone
+          console.log()
+
+          if(phone.value.trim() && phone.value.trim().length < 10 || /[a-z]/i.test(phone.value)|| phone.value.trim().length > 14){
+            phone.focus();
+            console.log(phone.value.trim().length)
+            alert('Please enter a valid Phone number.');
+            return;
+          }
+        }
+
         const fields = {
             'action_user_agent': navigator.userAgent,
             'country': 'United States',
@@ -200,10 +220,10 @@ class Form extends Component {
             'page': CONF.actionKitPageShortName,
             'source': this.state.source || 'website',
             'want_progress': 1,
-            'action_company_name': compName,
-            'action_company_website': compWebsite,
-            'action_company_zipcode' : compZipcode,
-            'action_company_phone' :compPhone
+            'action_company_name': '',
+            'action_company_website': '',
+            'action_company_zipcode' : '',
+            'action_company_phone' : ''
         };
 
        
