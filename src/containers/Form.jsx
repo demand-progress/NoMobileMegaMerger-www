@@ -60,8 +60,8 @@ class Form extends Component {
               <input type="text" className="form-input" name="company_website" placeholder="Business Website*" />
             </div>
             <div className="flex">
-              <input type="text" className="form-input" name="company_phone" placeholder="Business Phone Number" />
               <input type="text" className="form-input" name="company_zipcode" placeholder="Business Zipcode*" />
+              <input type="text" className="form-input" name="company_phone" placeholder="Phone Number" />
             </div>
           </div>
         )
@@ -87,7 +87,7 @@ class Form extends Component {
       <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
 
       <label style={{display:'inline', textIndent:'-15px'}}>
-        <strong>Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it. If you own a small business, check this box: 
+        <strong>Check this box if you own a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
         </strong>
       </label>
         <div className="flex" style={{marginTop: '25px'}}>
