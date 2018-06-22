@@ -236,17 +236,17 @@ class Form extends Component {
         });
 
         form.submit()
-        // this.setState(
-        //   { submitted: true }, 
-        //   () => {
-        //   const formFlex = document.getElementById("form").getElementsByClassName("flex")
-        //   const firstRow = formFlex[0].getElementsByClassName("form-input")
-        //   const secondRow = formFlex[1].getElementsByClassName("form-input")
-        //   firstRow[0].value = '';
-        //   firstRow[1].value = '';
-        //   secondRow[0].value = '';
-        //   secondRow[1].value = '';
-        // });
+        this.setState(
+          { submitted: true }, 
+          () => {
+          const formFlex = document.getElementById("form").getElementsByClassName("flex")
+          const firstRow = formFlex[0].getElementsByClassName("form-input")
+          const secondRow = formFlex[1].getElementsByClassName("form-input")
+          firstRow[0].value = '';
+          firstRow[1].value = '';
+          secondRow[0].value = '';
+          secondRow[1].value = '';
+        });
         
         
     }
