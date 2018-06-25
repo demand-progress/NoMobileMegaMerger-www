@@ -14,12 +14,23 @@ class Form extends Component {
         this.state.countDown = 5
         this.state.isMobile = false
         this.state.isBusiness = false
+        this.state.includeBusinessBox = false
         this.onSubmit = this.onSubmit.bind(this)
         this.closeModal = this.closeModal.bind(this)
         this.business = this.business.bind(this)
     }
 
     componentDidMount(){
+      const swaps = ['5dp', '5fftf']
+      
+      const includeBusinessBox = swaps.includes(this.state.source)
+
+      if(includeBusinessBox){
+        this.setState({
+          includeBusinessBox: includeBusinessBox
+        })
+      }
+    
       this.props.media({ minWidth: 768 }, () => {
         this.setState({
           isMobile: false
@@ -73,11 +84,13 @@ class Form extends Component {
             <input type="text" className="form-input" name="company_phone" placeholder="Phone Number" />
           </div>
         </div>
-        <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
-        <label style={{display:'inline', textIndent:'-15px'}}>
-        <strong>Check this box if you own a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
-        </strong>
-      </label>
+        <div style={{display: this.state.includeBusinessBox ? 'block' : 'none'}}>
+          <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
+          <label style={{display:'inline', textIndent:'-15px'}}>
+            <strong>Check this box if you own a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
+            </strong>
+          </label>
+        </div>
         <div className="flex" style={{marginTop: '25px'}}>
           <button className="btn">
             <span>{this.props.formButton}</span>
