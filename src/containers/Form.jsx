@@ -22,7 +22,7 @@ class Form extends Component {
 
     componentDidMount(){
       const swaps = [
-        '6CPDA', '6CommonDreams', '6CHV', '6CommonCause', '6CorporateAcct', '6Kos', '6DFA', '6FOE', '6Greenpeace', '6OpenMedia', '6PeoplesAction', '6PFAW', '6ProgressAmerica' 
+        '6CPDA','6CHV', '6CommonDreams', '6CommonCause', '6CorporateAcct', '6Kos', '6DFA','6FOE', '6Greenpeace', '6OpenMedia', '6PeoplesAction', '6PFAW','6ProgressAmerica','6PCAF','6SumOfUs', '6Nation'
       ]
       
       const includeBusinessBox = swaps.includes(this.state.source)
