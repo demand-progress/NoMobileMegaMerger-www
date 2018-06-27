@@ -21,7 +21,9 @@ class Form extends Component {
     }
 
     componentDidMount(){
-      const swaps = ['5dp', '5fftf']
+      const swaps = [
+        '6CPDA', '6CommonDreams', '6CHV', '6CommonCause', '6CorporateAcct', '6Kos', '6DFA', '6FOE', '6Greenpeace', '6OpenMedia', '6PeoplesAction', '6PFAW', '6ProgressAmerica' 
+      ]
       
       const includeBusinessBox = swaps.includes(this.state.source)
 
@@ -87,7 +89,7 @@ class Form extends Component {
         <div style={{display: this.state.includeBusinessBox ? 'block' : 'none'}}>
           <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
           <label style={{display:'inline', textIndent:'-15px'}}>
-            <strong>Check this box if you own a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
+            <strong>Check this box if you own or help run a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
             </strong>
           </label>
         </div>
