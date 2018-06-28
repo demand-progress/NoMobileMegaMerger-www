@@ -77,23 +77,29 @@ class App extends Component {
         return(
             <div>
                 {
-                    this.state.loading ? 
-                    <div id="spinner" >
-                        <Spinner/> 
+                    // this.state.loading ? 
+                    // <div>
+                    //     <h1>LOADING</h1>
+                    //     <div id="spinner" >
+                    //         <Spinner/> 
+                    //     </div>
+                    // </div>
+                    // :
+                    <div style={{display: this.state.loading ? 'none': 'block'}}>
+                        <Main 
+                        header={ header } 
+                        subHeader={ subHeader} 
+                        main={ main } 
+                        congressLanguage={ congressLanguage } 
+                        disclaimer={ disclaimer }
+                        formButton={ formButton }
+                        modalHeader={ modalHeader }
+                        modalText= { modalText }
+                        />
+                        <Footer tweet= {tweet} />
                     </div>
-                    :
-                    <Main 
-                    header={ header } 
-                    subHeader={ subHeader} 
-                    main={ main } 
-                    congressLanguage={ congressLanguage } 
-                    disclaimer={ disclaimer }
-                    formButton={ formButton }
-                    modalHeader={ modalHeader }
-                    modalText= { modalText }
-                    />
                 }
-                  <Footer tweet= {tweet} />
+                 
             </div>
         )
     }
