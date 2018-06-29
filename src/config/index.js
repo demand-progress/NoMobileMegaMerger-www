@@ -1,6 +1,6 @@
 const CONF = {
-    actionKitPageShortName: 'stop-fcc-house',
-    actionKitPageId: 2346
+    actionKitPageShortName: 'stop-trumps-court',
+    actionKitPageId: 2388
 };
 const URLS = {
     actionKit: 'https://act.demandprogress.org/act/',
