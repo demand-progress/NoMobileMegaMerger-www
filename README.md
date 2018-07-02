@@ -1,1 +1,1 @@
-#tipe example for stopthefcc site
+#repo for stoptrumpscourt.com
