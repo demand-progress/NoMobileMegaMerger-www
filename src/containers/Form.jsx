@@ -13,26 +13,11 @@ class Form extends Component {
         this.state.submitted = false
         this.state.countDown = 5
         this.state.isMobile = false
-        this.state.isBusiness = false
-        this.state.includeBusinessBox = false
         this.onSubmit = this.onSubmit.bind(this)
         this.closeModal = this.closeModal.bind(this)
-        this.business = this.business.bind(this)
     }
 
     componentDidMount(){
-      const swaps = [
-        '6CPDA','6CHV', '6CommonDreams', '6CommonCause', '6CorporateAcct', '6Kos', '6DFA','6FOE', '6Greenpeace', '6OpenMedia', '6PeoplesAction', '6PFAW','6ProgressAmerica','6PCAF','6SumOfUs', '6Nation'
-      ]
-      
-      const includeBusinessBox = swaps.includes(this.state.source)
-
-      if(includeBusinessBox){
-        this.setState({
-          includeBusinessBox: includeBusinessBox
-        })
-      }
-    
       this.props.media({ minWidth: 768 }, () => {
         this.setState({
           isMobile: false
@@ -42,13 +27,6 @@ class Form extends Component {
         this.setState({
           isMobile: true
         })
-      })
-    }
-
-    business() {
-      const checkBoxStatus = document.getElementById("business").checked ? true : false;
-      this.setState({
-        isBusiness: checkBoxStatus
       })
     }
 
@@ -75,23 +53,6 @@ class Form extends Component {
         <div className="flex" style={{marginBottom: '20px'}}>
           <input type="text" className="form-input" name="street" placeholder="Street Address" />
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
-        </div>
-        <div style={{display: this.state.isBusiness ? 'block' : 'none'}}>
-          <div className="flex">
-            <input type="text" className="form-input" name="company_name" placeholder="Business Name*" />
-            <input type="text" className="form-input" name="company_website" placeholder="Business Website*" />
-          </div>
-          <div className="flex">
-            <input type="text" className="form-input" name="company_zipcode" placeholder="Business Zipcode*" />
-            <input type="text" className="form-input" name="company_phone" placeholder="Phone Number" />
-          </div>
-        </div>
-        <div style={{display: this.state.includeBusinessBox ? 'block' : 'none'}}>
-          <input id='business' onClick={ this.business } name="business_checkbox" style={{padding:'0', margin:'0',verticalAlign:'bottom', position: 'relative', width: '20px', height: '20px', borderRadius: '5px', border: '2px solid #555'}} type="checkbox"/>
-          <label style={{display:'inline', textIndent:'-15px'}}>
-            <strong>Check this box if you own or help run a small business and want to help save net neutrality. Small businesses will be among those hurt most by the loss of net neutrality, but they can also play a key role in saving it.
-            </strong>
-          </label>
         </div>
         <div className="flex" style={{marginTop: '25px'}}>
           <button className="btn">
