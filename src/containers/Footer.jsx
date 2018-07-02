@@ -14,7 +14,7 @@ class Footer extends Component {
     componentDidMount(){
         axios({
             method: "get",
-            url: 'https://api.tipe.io/api/v1/document/5afb470430f8070013b794a6',
+            url: 'https://api.tipe.io/api/v1/document/5b3a53a91cd7970013c0a0f2',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': 'DC37ZIL72X4BNJ6A3SPO6KF5N',
@@ -74,7 +74,7 @@ class Footer extends Component {
                                     <img src="images/twitter_white.svg" />
                                     <span>Share on twitter</span>
                                 </a>
-                                <a className="facebook" href="https://www.facebook.com/sharer.php?u=https://www.stopthefcc.net/" target="_blank">
+                                <a className="facebook" href="https://www.facebook.com/sharer.php?u=https://www.stoptrumpscourt.com/" target="_blank">
                                     <img src="images/facebook_white.svg" />
                                     <span>Share on facebook</span>
                                 </a>
