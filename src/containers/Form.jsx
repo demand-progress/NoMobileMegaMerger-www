@@ -35,7 +35,6 @@ class Form extends Component {
       let topOfPage = null;
       let middle = null; 
       let headerContent = null;
-      let businessForm = null; 
 
       const subHeader = (
         <div id="subHeader">          
@@ -161,49 +160,6 @@ class Form extends Component {
             'want_progress': 1,
         };
 
-        if(document.getElementById("business").checked){
-          const compName = form.company_name
-          if (!compName.value.trim()) {
-            compName.focus();
-            alert('Please enter your business name.');
-            return;
-          } else {
-            fields['action_company_name'] = compName.value.trim()
-          }
-
-          const compWebsite = form.company_website
-          if (!compWebsite.value.trim()) {
-            compWebsite.focus();
-            alert('Please enter your business website.');
-            return;
-          } else {
-            fields['action_company_website'] = compWebsite.value.trim()
-          }
-
-          const zip = form.company_zipcode;
-          if (!zip.value.trim()) {
-              zip.focus();
-              alert('Please enter your business zipcode.');
-              return;
-          } else if (zip.value.length < 5 || zip.value.length > 5) {
-              zip.focus();
-              alert('Please enter a valid business zipcode.');
-              return;
-          } else {
-            fields['action_company_zipcode'] = zip.value.trim()
-          }
-
-          const phone = form.company_phone
-          if(phone.value.trim() && phone.value.trim().length < 10 || /[a-z]/i.test(phone.value)|| phone.value.trim().length > 14){
-            phone.focus();
-            console.log(phone.value.trim().length)
-            alert('Please enter a valid Phone number.');
-            return;
-          } else {
-            fields['action_company_phone'] = phone.value.trim()
-          }
-        }
-      
         this.sendFormToActionKit(fields);
     }
 
@@ -215,17 +171,6 @@ class Form extends Component {
       firstRow[1].value = ''
       secondRow[0].value = ''
       secondRow[1].value = ''
-    }
-
-    clearBusinessForm(){
-      const formFlex = document.getElementById("form").getElementsByClassName("flex")
-      const thirdRow = formFlex[2].getElementsByClassName("form-input")
-      const fourthRow = formFlex[3].getElementsByClassName("form-input")
-      thirdRow[0].value = ''
-      thirdRow[1].value = ''
-      fourthRow[0].value = ''
-      fourthRow[1].value = ''
-      document.getElementById("business").checked = false
     }
 
     sendFormToActionKit(fields) {
@@ -250,15 +195,12 @@ class Form extends Component {
             input.value = fields[key];
             form.appendChild(input);
         });
-
-        form.submit()
+        
+        // form.submit()
         this.setState(
           { submitted: true }, 
           () => {
             this.clearUserForm()
-            if(document.getElementById("business").checked){
-              this.clearBusinessForm()
-            }
            });   
     }
 
