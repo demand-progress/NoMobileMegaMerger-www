@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Logo from './Logo.jsx'
 import axios from 'axios'
+import keys from '../config/keys.js'
 
 class Footer extends Component {
     constructor(props){
@@ -12,13 +13,14 @@ class Footer extends Component {
     }
 
     componentDidMount(){
+        const { tipeAuth, tipeId } = keys;
         axios({
             method: "get",
-            url: 'https://api.tipe.io/api/v1/document/5b3a6bd81cd7970013c0a122',
+            url: 'https://api.tipe.io/api/v1/document/5b68b5424793e00013cd09d1',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'DC37ZIL72X4BNJ6A3SPO6KF5N',
-              'Tipe-Id': 'NWFlOWYyYTQzMjNmYzkwMDEzY2I0ZGZh'
+              'Authorization': tipeAuth,
+              'Tipe-Id': tipeId
             }
           })
           .then(response => {
