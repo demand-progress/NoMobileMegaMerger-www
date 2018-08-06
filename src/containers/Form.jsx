@@ -3,16 +3,17 @@ import { CONF, URLS } from '../config';
 import { getQueryVariables } from '../utils';
 import Markdown from 'react-markdown'
 import Responsive from 'react-responsive-decorator';
-
+import axios from 'axios';
 
 class Form extends Component {
 
     constructor(props) {
         super(props)
         this.state = getQueryVariables()
-        this.state.submitted = false
+        this.state.formSubmitted = false
         this.state.countDown = 5
         this.state.isMobile = false
+        this.state.loading = false
         this.onSubmit = this.onSubmit.bind(this)
         this.closeModal = this.closeModal.bind(this)
     }
@@ -34,13 +35,20 @@ class Form extends Component {
       let modal = null;
       let topOfPage = null;
       let middle = null; 
-      let headerContent = null;
+      let formButtonText = null; 
 
       const subHeader = (
         <div id="subHeader">          
           <Markdown source={this.props.subHeader} />
         </div>
       )
+
+      
+      if(this.state.loading){
+        formButtonText = (<span>Loading ...</span>)
+      } else {
+        formButtonText = (<span>{this.props.formButton}</span>)
+      }
 
       const form = (
         <div>
@@ -55,7 +63,7 @@ class Form extends Component {
         </div>
         <div className="flex" style={{marginTop: '25px'}}>
           <button className="btn">
-            <span>{this.props.formButton}</span>
+            {formButtonText}
           </button>
         </div>
       </form>
@@ -72,9 +80,9 @@ class Form extends Component {
         middle = form
       }
 
-      if(this.state.submitted) {
+      if(this.state.formSubmitted) {
         modal = (
-              <div id="thanks" className="modal-wrapper-thanks modal-open-thanks" style={{ 'display' : this.state.submitted ? 'block' : 'none'}}>
+              <div id="thanks" className="modal-wrapper-thanks modal-open-thanks" style={{ 'display' : this.state.formSubmitted ? 'block' : 'none'}}>
               <div className="modal-thanks">
                 <a className="close-thanks" href="#" onClick={ this.closeModal }>×</a>
                 <header>
@@ -100,11 +108,15 @@ class Form extends Component {
 
     closeModal(evt) {
       evt.preventDefault();
-      this.setState({ submitted: false });
+      this.setState({ formSubmitted: false });
     }
 
     onSubmit(evt) {
         evt.preventDefault();
+
+        this.setState({
+          loading: true 
+        });
 
         const form = evt.target;
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -195,15 +207,34 @@ class Form extends Component {
             input.value = fields[key];
             form.appendChild(input);
         });
-        
-        // form.submit()
-        this.setState(
-          { submitted: true }, 
-          () => {
-            this.clearUserForm()
-           });   
-    }
 
+        const {name, email, zip} = fields;
+        const first_name = name.split(' ')[0];
+        const last_name = name.split(' ')[1] ? name.split(' ')[1]: '';
+     
+        axios.post('https://fcc-comment-api.herokuapp.com/comment', 
+        {"first_name":  first_name, 
+        "last_name": last_name,
+        "email": email,
+        "zip": zip
+        })
+        .then((response) => {
+           console.log('fcc comment posted ', response.data)
+        })
+        .catch(console.error)
+         // form.submit() 
+         setTimeout(
+          function() {
+            this.setState(
+              { 
+                formSubmitted: true,
+                loading: false 
+              }, () => {this.clearUserForm()});  
+          }
+          .bind(this),
+          1500
+      );
+    }
 }
 
 export default Responsive(Form);
