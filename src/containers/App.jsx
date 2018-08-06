@@ -32,7 +32,7 @@ class App extends Component {
 
         axios({
           method: "get",
-          url: 'https://api.tipe.io/api/v1/document/5b3a5a66effc6a0013baa2aa',
+          url: 'https://api.tipe.io/api/v1/document/5b68af8f5995200013fc7f9e',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': tipeAuth,
