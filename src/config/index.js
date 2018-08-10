@@ -1,6 +1,6 @@
 const CONF = {
-    actionKitPageShortName: 'stop-trumps-court',
-    actionKitPageId: 2388
+    actionKitPageShortName: 'FCC-submit-comment',
+    actionKitPageId: 2421
 };
 const URLS = {
     actionKit: 'https://act.demandprogress.org/act/',
