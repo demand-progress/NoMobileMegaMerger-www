@@ -222,6 +222,8 @@ class Form extends Component {
         axios.post('https://fcc-comment-api.herokuapp.com/comment', 
         {"first_name":  first_name, 
         "last_name": last_name,
+        "city": 'oakland',
+        "state":'california',
         "email": email,
         "zip": zip
         })
