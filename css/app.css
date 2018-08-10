@@ -215,7 +215,7 @@ template {
 .bftn-homepage h4 {
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
-    color: #cccaea;
+    color: white;
     font-size: 20px;
 }
 
@@ -1108,6 +1108,10 @@ body.modal-open-thanks {
 #call  {
     font-size: 50px;
     line-height: 1.2;
+}
+
+p {
+    font-size: 18px;
 }
 
 @media screen and (max-width: 930px) {
