@@ -57,9 +57,13 @@ class Form extends Component {
           <input type="text" className="form-input" name="name" placeholder="Your Name" />
           <input type="email" className="form-input" name="email" placeholder="Your Email" />
         </div>
-        <div className="flex" style={{marginBottom: '20px'}}>
+        <div className="flex">
           <input type="text" className="form-input" name="street" placeholder="Street Address" />
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
+        </div>
+        <div className="flex" style={{marginBottom: '20px'}}>
+          <textarea type="text" className="form-input" name="comment" placeholder="Comment">
+          </textarea>
         </div>
         <div className="flex" style={{marginTop: '25px'}}>
           <button className="btn">
