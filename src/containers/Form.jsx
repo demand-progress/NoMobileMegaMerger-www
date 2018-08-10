@@ -181,12 +181,15 @@ class Form extends Component {
 
     clearUserForm(){
       const formFlex = document.getElementById("form").getElementsByClassName("flex")
+      //loop through items to clear form
       const firstRow = formFlex[0].getElementsByClassName("form-input")
       const secondRow = formFlex[1].getElementsByClassName("form-input")
+      const thirdRow = formFlex[2].getElementsByClassName("form-input")
       firstRow[0].value = ''
       firstRow[1].value = ''
       secondRow[0].value = ''
       secondRow[1].value = ''
+      thirdRow[0].value = ''
     }
 
     sendFormToActionKit(fields) {
@@ -226,7 +229,7 @@ class Form extends Component {
            console.log('fcc comment posted ', response.data)
         })
         .catch(console.error)
-         // form.submit() 
+         form.submit() 
          setTimeout(
           function() {
             this.setState(
