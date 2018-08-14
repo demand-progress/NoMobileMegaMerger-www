@@ -150,6 +150,13 @@ class Form extends Component {
             return;
         }
 
+        const fcc_comment = form.comment;
+        if (!fcc_comment.value.trim()) {
+          fcc_comment.focus();
+            alert("Please enter your comment.");
+            return;
+        }
+
         const zip = form.zip;
         if (!zip.value.trim()) {
             zip.focus();
@@ -163,6 +170,7 @@ class Form extends Component {
 
         const fields = {
             'action_user_agent': navigator.userAgent,
+            'action_fcc_comment': fcc_comment.value.trim(),
             'country': 'United States',
             'email': email.value.trim(),
             'form_name': 'act-petition',
@@ -175,7 +183,7 @@ class Form extends Component {
             'source': this.state.source || 'website',
             'want_progress': 1,
         };
-
+        
         this.sendFormToActionKit(fields);
     }
 
@@ -215,15 +223,14 @@ class Form extends Component {
             form.appendChild(input);
         });
 
-        const {name, email, zip} = fields;
+        const {name, email, zip, action_fcc_comment} = fields;
         const first_name = name.split(' ')[0];
         const last_name = name.split(' ')[1] ? name.split(' ')[1]: '';
      
         axios.post('https://fcc-comment-api.herokuapp.com/comment', 
         {"first_name":  first_name, 
         "last_name": last_name,
-        "city": "oakland",
-        "state":"california",
+        "fcc_comment": action_fcc_comment,
         "email": email,
         "zip": zip
         })
