@@ -54,7 +54,7 @@ class Footer extends Component {
                     <div className="logos-unit">
                         <div className="built-by">
                             <p><br/><br/>Built by:</p> <img src="images/demand-progress.png" />
-                            <p>In partnership with: </p> <img src="images/DailyKosLogo.png" />
+                            {/* <p>In partnership with: </p> <img src="images/DailyKosLogo.png" /> */}
                         </div>
                         <div className="logos" style={{display: "flex", flexFlow: "row wrap", justifyContent: "center", alignItems: "center"}}>
                             {logos}
