@@ -62,7 +62,7 @@ class Form extends Component {
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
         </div>
         <div className="flex" style={{marginBottom: '20px'}}>
-          <textarea type="text" className="form-input" name="comment" placeholder="Comment">
+          <textarea type="text" className="form-input" name="comment" value="The internet has become dominated by monopolistic giants, such as Facebook, Amazon, and Google, who use their size and market dominance to undermine competition. Facebook and Google have monopolized online ads, helping undermine income streams for newspapers and helping cause mass layoffs of journalists. Amazon aggressively uses its market position to undercut small retailers and producers, and is expanding into new lines of business such as grocery and even health care. These companies also have a long record of neglecting consumer protections. Facebook is the most obvious offender, with its catastrophic data breaches including but not limited to Cambridge Analytica. Because these companies have a dominant market position, it is almost impossible for alternatives to be created and thrive. We also believe that a free and open internet is essential to competition and consumer protection, including net neutrality as well as breaking up the major telecommunications companies such as AT&T, Comcast, and Verizon who have come to dominate broadband." placeholder="Comment">
           </textarea>
         </div>
         <div className="flex" style={{marginTop: '25px'}}>
