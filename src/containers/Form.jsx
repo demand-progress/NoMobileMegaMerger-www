@@ -222,24 +222,24 @@ class Form extends Component {
       form.appendChild(input);
     });
 
-    const {
-      name, email, zip, action_fcc_comment,
-    } = fields;
-    const first_name = name.split(' ')[0];
-    const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
+    // const {
+    //   name, email, zip, action_fcc_comment,
+    // } = fields;
+    // const first_name = name.split(' ')[0];
+    // const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
 
-    axios.post('https://fcc-comment-api.herokuapp.com/comment',
-      {
-        first_name,
-        last_name,
-        fcc_comment: action_fcc_comment,
-        email,
-        zip,
-      })
-      .then((response) => {
-        console.log('fcc comment posted ', response.data);
-      })
-      .catch(console.error);
+    // axios.post('https://fcc-comment-api.herokuapp.com/comment',
+    //   {
+    //     first_name,
+    //     last_name,
+    //     fcc_comment: action_fcc_comment,
+    //     email,
+    //     zip,
+    //   })
+    //   .then((response) => {
+    //     console.log('fcc comment posted ', response.data);
+    //   })
+    //   .catch(console.error);
     form.submit();
     setTimeout(
       () => {
