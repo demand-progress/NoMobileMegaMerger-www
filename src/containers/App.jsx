@@ -41,17 +41,18 @@ class App extends Component {
         })
         .then(response => {
           const { data } = response
+          console.log(data);
           this.setState({
             textContent:{
-              header: data.blocks[0].value,
-              subHeader: data.blocks[1].value,
-              congressLanguage: data.blocks[2].value,
-              main: data.blocks[3].value,
-              disclaimer: data.blocks[4].value,
-              formButton: data.blocks[5].value,
-              modalHeader: data.blocks[6].value,
-              modalText: data.blocks[7].value,
-              tweet: data.blocks[8].value
+              header: data.blocks[6].value,
+              subHeader: data.blocks[8].value,
+              congressLanguage: data.blocks[4].value,
+              main: data.blocks[5].value,
+              disclaimer: data.blocks[0].value,
+              formButton: data.blocks[2].value,
+              modalHeader: data.blocks[1].value,
+              modalText: data.blocks[3].value,
+              tweet: data.blocks[7].value
             },
             loading: false
           })
