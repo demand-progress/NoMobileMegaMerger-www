@@ -1,6 +1,6 @@
 const CONF = {
-  actionKitPageShortName: 'FCC-submit-comment',
-  actionKitPageId: 2421,
+  actionKitPageShortName: 'No_mobile_mega_merger',
+  actionKitPageId: 2461,
 };
 const URLS = {
   actionKit: 'https://act.demandprogress.org/act/',
