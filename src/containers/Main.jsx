@@ -12,6 +12,7 @@ const Main = (props) =>  {
                         <Form 
                         subHeader={props.subHeader} 
                         header={ props.header } 
+                        ftcComment = { props.ftcComment }
                         main={props.main} 
                         disclaimer={props.disclaimer} 
                         formButton = {props.formButton} 
