@@ -32,7 +32,7 @@ class App extends Component {
 
         axios({
           method: "get",
-          url: 'https://api.tipe.io/api/v1/document/5b68af8f5995200013fc7f9e',
+          url: 'https://api.tipe.io/api/v1/document/5b9bf25ebafb7a00133672f8',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': tipeAuth,
@@ -44,15 +44,16 @@ class App extends Component {
           console.log(data);
           this.setState({
             textContent:{
-              header: data.blocks[6].value,
-              subHeader: data.blocks[8].value,
-              congressLanguage: data.blocks[4].value,
-              main: data.blocks[5].value,
-              disclaimer: data.blocks[0].value,
-              formButton: data.blocks[2].value,
-              modalHeader: data.blocks[1].value,
-              modalText: data.blocks[3].value,
-              tweet: data.blocks[7].value
+              header: data.blocks[0].value,
+              subHeader: data.blocks[1].value,
+              ftcComment: data.blocks[2].value,
+              formButton: data.blocks[3].value,
+              disclaimer: data.blocks[4].value,
+              congressLanguage: data.blocks[5].value,
+              main: data.blocks[6].value,
+              modalHeader: data.blocks[7].value,
+              modalText: data.blocks[8].value,
+              tweet: data.blocks[9].value
             },
             loading: false
           })
@@ -65,6 +66,7 @@ class App extends Component {
         const { 
             header, 
             subHeader, 
+            ftcComment,
             main, 
             congressLanguage, 
             disclaimer, 
@@ -78,7 +80,8 @@ class App extends Component {
             <div style={{display: this.state.loading ? 'none': 'block'}}>
                 <Main 
                 header={ header } 
-                subHeader={ subHeader} 
+                subHeader={ subHeader }
+                ftcComment={ ftcComment } 
                 main={ main } 
                 congressLanguage={ congressLanguage } 
                 disclaimer={ disclaimer }
