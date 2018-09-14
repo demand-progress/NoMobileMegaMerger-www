@@ -35,10 +35,11 @@ class Form extends Component {
     let topOfPage = null;
     let middle = null;
     let formButtonText = null;
-
-    const subHeader = (
+    const { header, subHeader, formButton, disclaimer, ftcComment, modalHeader, modalText } = this.props; 
+    console.log( ftcComment);
+    const subHeaderDiv = (
         <div id="subHeader">
-          <Markdown source={this.props.subHeader} />
+          <Markdown source={ subHeader } />
         </div>
     );
 
@@ -46,7 +47,7 @@ class Form extends Component {
     if (this.state.loading) {
       formButtonText = (<span>Loading ...</span>);
     } else {
-      formButtonText = (<span>{this.props.formButton}</span>);
+      formButtonText = (<span>{ formButton }</span>);
     }
 
     const form = (
@@ -61,9 +62,7 @@ class Form extends Component {
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
         </div>
         <div className="flex" style={{ marginBottom: '20px' }}>
-          <textarea type="text" className="form-input" name="comment" placeholder="Comment">
-          I write to urge the Commission to do more to protect consumers from the harmful practices of tech giants. We have seen numerous examples of these giants abusing their power and their dominant market position to undermine competition, consumer privacy, and our democratic rights. These companies have been allowed to reach their current size and power due to a relative lack of scrutiny and oversight by regulators. It is time for regulators, including this Commission, to step in now to change course in order to protect the public interest. The Commission has should use its competition authority to examine these tech giants, including any future mergers they might propose, with a very close eye. The Commission should strongly leverage violations of existing consent decrees to obtain meaningful relief for consumers. The Commission should also interpret and use its authority to prohibit unfair and deceptive trade practices to protect consumers, communities, and our democracy as a whole from the wide range of harm being committed by tech giants. The Commission must look not only at the largest companies, but also the ecosystem and market practices that promote the harmful data-driven practices on which tech giants thrive.
-          </textarea>
+          <textarea type="text" className="form-input" name="comment" placeholder="Comment" value={ ftcComment } ></textarea>
         </div>
         <div className="flex" style={{ marginTop: '25px' }}>
           <button className="btn">
@@ -71,16 +70,16 @@ class Form extends Component {
           </button>
         </div>
       </form>
-      <span><i>{this.props.disclaimer}</i></span>
+      <span><i>{disclaimer}</i></span>
       <br/><br/>
       </div>
     );
 
     if (this.state.isMobile) {
       topOfPage = form;
-      middle = subHeader;
+      middle = subHeaderDiv;
     } else {
-      topOfPage = subHeader;
+      topOfPage = subHeaderDiv;
       middle = form;
     }
 
@@ -90,10 +89,10 @@ class Form extends Component {
               <div className="modal-thanks">
                 <a className="close-thanks" href="#" onClick={ this.closeModal }>×</a>
                 <header>
-                  <h2 id="modal-header-thanks">{this.props.modalHeader}</h2>
+                  <h2 id="modal-header-thanks">{modalHeader}</h2>
                 </header>
                 <article>
-                <Markdown className="modal-thanks-text" source= {this.props.modalText} />
+                <Markdown className="modal-thanks-text" source= {modalText} />
                 </article>
               </div>
             </div>
@@ -102,7 +101,7 @@ class Form extends Component {
 
     return (
         <div className="bftn-form call-action-form" onSubmit={ this.onSubmit }>
-          <Markdown source={this.props.header} />
+          <Markdown source={header} />
             {topOfPage}
             {middle}
             {modal}
@@ -240,7 +239,7 @@ class Form extends Component {
     //     console.log('fcc comment posted ', response.data);
     //   })
     //   .catch(console.error);
-    form.submit();
+    // form.submit();
     setTimeout(
       () => {
         this.setState(
