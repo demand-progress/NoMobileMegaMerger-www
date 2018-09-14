@@ -16,7 +16,7 @@ class Footer extends Component {
         const { tipeAuth, tipeId } = keys;
         axios({
             method: "get",
-            url: 'https://api.tipe.io/api/v1/document/5b68b5424793e00013cd09d1',
+            url: 'https://api.tipe.io/api/v1/document/5b9c03c07296580013512fd1',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': tipeAuth,
