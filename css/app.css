@@ -216,7 +216,7 @@ template {
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .bftn-homepage div, .bftn-homepage p {
@@ -979,6 +979,10 @@ template {
 .modal-thanks-text h3 a{
     display: block;
     padding-bottom: 20px;
+}
+
+.more_info {
+    text-align: center;
 }
 
 div.modal-thanks-text p{
