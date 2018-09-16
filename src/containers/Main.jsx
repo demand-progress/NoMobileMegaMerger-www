@@ -25,7 +25,8 @@ const Main = (props) =>  {
                     <Markdown source= {props.congressLanguage} />
                 </div>
                 <hr/>
-                    <div style={{color: 'white'}}>
+                    <div className="more_info">
+                    <h4>More Information:</h4>
                     <Markdown source= {props.main} />
                     </div>
                 </div>
