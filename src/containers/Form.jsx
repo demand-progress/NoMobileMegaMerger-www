@@ -173,7 +173,7 @@ I write to urge the Commission to deny Sprint and T-Mobile’s request to merge.
 
     const fields = {
       action_user_agent: navigator.userAgent,
-      action_fcc_comment: fcc_comment.value.trim(),
+      action_fcc_tmobile_merger_comment: fcc_comment.value.trim(),
       country: 'United States',
       email: email.value.trim(),
       form_name: 'act-petition',
