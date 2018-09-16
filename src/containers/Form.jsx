@@ -4,6 +4,7 @@ import Responsive from 'react-responsive-decorator';
 import axios from 'axios';
 import { getQueryVariables } from '../utils';
 import { CONF, URLS } from '../config';
+import keys from '../config/keys';
 
 class Form extends Component {
   constructor(props) {
@@ -35,8 +36,10 @@ class Form extends Component {
     let topOfPage = null;
     let middle = null;
     let formButtonText = null;
-    const { header, subHeader, formButton, disclaimer, ftcComment, modalHeader, modalText } = this.props; 
-    console.log( ftcComment);
+    const {
+      header, subHeader, formButton, disclaimer, ftcComment, modalHeader, modalText,
+    } = this.props;
+    console.log(ftcComment);
     const subHeaderDiv = (
         <div id="subHeader">
           <Markdown source={ subHeader } />
@@ -62,7 +65,9 @@ class Form extends Component {
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
         </div>
         <div className="flex" style={{ marginBottom: '20px' }}>
-          <textarea type="text" className="form-input" name="comment" placeholder="Comment" value={ ftcComment } ></textarea>
+          <textarea type="text" className="form-input" name="comment" placeholder="Comment" >
+I write to urge the Commission to deny Sprint and T-Mobile’s request to merge. Over the past decade, the wireless industry has aggressively consolidated, leaving consumers with only four choices for national cell phone providers. Sprint and T-Mobile have both carved out a niche in the marketplace by providing lower cost plans, shorter contracts, and other consumer-friendly practices, compared to their rivals AT&T and Verizon. Sprint and T-Mobile compete directly with each other for the same market share, which results in higher quality plans and lower costs for their customers, many of whom are low-income and people of color. A merger between Sprint and T-Mobile would disproportionately and negatively impact these consumers, and lead to higher prices for all wireless customers. 
+          </textarea>
         </div>
         <div className="flex" style={{ marginTop: '25px' }}>
           <button className="btn">
@@ -220,37 +225,60 @@ class Form extends Component {
       input.value = fields[key];
       form.appendChild(input);
     });
+    form.submit();
 
-    // const {
-    //   name, email, zip, action_fcc_comment,
-    // } = fields;
-    // const first_name = name.split(' ')[0];
-    // const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
+    const {
+      name, email, address1, zip, action_fcc_comment,
+    } = fields;
+    const first_name = name.split(' ')[0];
+    const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
 
-    // axios.post('https://fcc-comment-api.herokuapp.com/comment',
-    //   {
-    //     first_name,
-    //     last_name,
-    //     fcc_comment: action_fcc_comment,
-    //     email,
-    //     zip,
-    //   })
-    //   .then((response) => {
-    //     console.log('fcc comment posted ', response.data);
-    //   })
-    //   .catch(console.error);
-    // form.submit();
-    setTimeout(
-      () => {
+    const axiosConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    };
+    axios({
+      method: 'post',
+      url: `https://publicapi.fcc.gov/ecfs/filings?api_key=${keys.fccKey}`,
+      data: {
+        proceedings: [
+          {
+            // bureau_code: 'WTB',
+            // bureau_name: 'Wireless Telecommunications Bureau',
+            // name: '18-197',
+          },
+        ],
+        filers: [
+          {
+            name: `${first_name} ${last_name}`,
+          },
+        ],
+        contact_email: email,
+        addressentity: {
+          address_line_1: address1,
+          city: 'oakland',
+          state: 'ca',
+          zip_code: zip,
+        },
+        text_data: action_fcc_comment,
+        express_comment: 1,
+      },
+      axiosConfig,
+    })
+      .then((response) => {
+        console.log('success', response);
         this.setState(
           {
             formSubmitted: true,
             loading: false,
           }, () => { this.clearUserForm(); },
         );
-      },
-      1500,
-    );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 
