@@ -956,13 +956,8 @@ template {
 }
 
 .bftn-homepage .unit p a {
-    text-decoration: underline;
-    font-weight: bold;
-    color: #ff1a09;
-    font-size: 19px;
-    text-align: center;
+    color: #cccaea;
 }
-
 
 .modal-thanks-text h5 {
     font-size: 20px;
