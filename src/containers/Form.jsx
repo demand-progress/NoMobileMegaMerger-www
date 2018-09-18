@@ -66,7 +66,7 @@ class Form extends Component {
         </div>
         <div className="flex" style={{ marginBottom: '20px' }}>
           <textarea type="text" className="form-input" name="comment" placeholder="Comment" >
-I write to urge the Commission to deny Sprint and T-Mobile’s request to merge. Over the past decade, the wireless industry has aggressively consolidated, leaving consumers with only four choices for national cell phone providers. Sprint and T-Mobile have both carved out a niche in the marketplace by providing lower cost plans, shorter contracts, and other consumer-friendly practices, compared to their rivals AT&T and Verizon. Sprint and T-Mobile compete directly with each other for the same market share, which results in higher quality plans and lower costs for their customers, many of whom are low-income and people of color. A merger between Sprint and T-Mobile would disproportionately and negatively impact these consumers, and lead to higher prices for all wireless customers. 
+I write to urge the Commission to deny Sprint and T-Mobile’s request to merge. Over the past decade, the wireless industry has aggressively consolidated, leaving consumers with only four choices for national cell phone providers. Sprint and T-Mobile have both carved out a niche in the marketplace by providing lower cost plans, shorter contracts, and other consumer-friendly practices, compared to their rivals AT&T and Verizon. Sprint and T-Mobile compete directly with each other for the same market share, which results in higher quality plans and lower costs for their customers, many of whom are low-income and people of color. A merger between Sprint and T-Mobile would disproportionately and negatively impact these consumers, and lead to higher prices for all wireless customers.
           </textarea>
         </div>
         <div className="flex" style={{ marginTop: '25px' }}>
@@ -225,50 +225,24 @@ I write to urge the Commission to deny Sprint and T-Mobile’s request to merge.
       input.value = fields[key];
       form.appendChild(input);
     });
-    form.submit();
+    // form.submit();
 
     const {
-      name, email, address1, zip, action_fcc_comment,
+      name, email, address1, zip, action_fcc_tmobile_merger_comment,
     } = fields;
     const first_name = name.split(' ')[0];
     const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
 
-    const axiosConfig = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-    };
-    axios({
-      method: 'post',
-      url: `https://publicapi.fcc.gov/ecfs/filings?api_key=${keys.fccKey}`,
-      data: {
-        proceedings: [
-          {
-            // bureau_code: 'WTB',
-            // bureau_name: 'Wireless Telecommunications Bureau',
-            // name: '18-197',
-          },
-        ],
-        filers: [
-          {
-            name: `${first_name} ${last_name}`,
-          },
-        ],
-        contact_email: email,
-        addressentity: {
-          address_line_1: address1,
-          city: 'oakland',
-          state: 'ca',
-          zip_code: zip,
-        },
-        text_data: action_fcc_comment,
-        express_comment: 1,
-      },
-      axiosConfig,
+    axios.post('https://api-caller.herokuapp.com/fcccomment/', {
+      first_name,
+      last_name,
+      email,
+      address1,
+      zip,
+      fcc_comment: action_fcc_tmobile_merger_comment,
     })
       .then((response) => {
-        console.log('success', response);
+        console.log('status', response.status);
         this.setState(
           {
             formSubmitted: true,
