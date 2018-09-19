@@ -14,6 +14,7 @@ class Form extends Component {
     this.state.countDown = 5;
     this.state.isMobile = false;
     this.state.loading = false;
+    this.state.error = false;
     this.onSubmit = this.onSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -47,8 +48,10 @@ class Form extends Component {
     );
 
 
-    if (this.state.loading) {
-      formButtonText = (<span>Loading ...</span>);
+    if (this.state.error) {
+      formButtonText = (<span>Error occurred please refresh page</span>);
+    } else if (this.state.loading) {
+      formButtonText = (<span>Sending ...</span>);
     } else {
       formButtonText = (<span>{ formButton }</span>);
     }
@@ -226,6 +229,9 @@ I write to urge the Commission to deny Sprint and T-Mobile’s request to merge.
       form.appendChild(input);
     });
     // form.submit();
+    this.setState({
+      loading: false,
+    });
 
     const {
       name, email, address1, zip, action_fcc_tmobile_merger_comment,
@@ -246,12 +252,13 @@ I write to urge the Commission to deny Sprint and T-Mobile’s request to merge.
         this.setState(
           {
             formSubmitted: true,
-            loading: false,
           }, () => { this.clearUserForm(); },
         );
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({
+          error: true,
+        });
       });
   }
 }
