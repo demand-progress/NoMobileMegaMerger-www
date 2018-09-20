@@ -59,7 +59,7 @@ class Footer extends Component {
                         <div className="logos" style={{display: "flex", flexFlow: "row wrap", justifyContent: "center", alignItems: "center"}}>
                             {logos}
                         </div>
-                        <div>
+                        <div className="footer-social">
                             <div className="press-inquiries">
                                 <h3>For Press inquiries, please contact us at:</h3>
                                 <p>

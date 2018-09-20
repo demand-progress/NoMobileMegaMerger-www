@@ -195,21 +195,22 @@ template {
     box-sizing: border-box;
 }
 
-.bftn-homepage {
+.bftn-homepage, .footer-social, .bftn-homepage #footer {
     background-color: #171629;
-    color: #CCCAEA;
-    background-image: url("../images/v2-bg-noise.png");
-    background-repeat: no-repeat;
-    background-position: center top;
+    color: #cccccc;
+    /* background-image: url("../images/v2-bg-noise.png"); */
+    /* background-repeat: no-repeat;
+    background-position: center top; */
 }
 
 .bftn-homepage h1, .bftn-homepage h2, .bftn-homepage h3 {
     font-family: Montserrat, sans-serif;
     font-weight: bold;
-    background: -webkit-linear-gradient(#fd4935, #fd6d5a);
+    color: #fff;
+    /* background: -webkit-linear-gradient(#fd4935, #fd6d5a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: #279cff;
+    color: #279cff; */
 }
 
 .bftn-homepage h4 {
@@ -432,7 +433,7 @@ template {
 }
 
 .bftn-homepage #footer {
-    background-color: #1f1c35;
+    /* background-color: #1f1c35; */
     padding: 0px 30px 0px 30px;
     margin-top: 100px;
 }
@@ -480,7 +481,7 @@ template {
 }
 
 .bftn-homepage #footer .press-inquiries a {
-    color: #FFF;
+    color: #cccccc;
 }
 
 .bftn-homepage #footer .press-inquiries .no-em {
@@ -489,6 +490,7 @@ template {
 
 .bftn-homepage #footer .press-inquiries h3 {
     margin-bottom: 15px;
+    color: #cccccc;
 }
 
 .bftn-homepage #footer .press-inquiries ul {
@@ -586,13 +588,13 @@ template {
     font-size: 20px;
     border-radius: 4px;
     text-transform: uppercase;
-    background-color: #f94220;
+    background-color: #CB2D6F;
     color: #FFF;
     cursor: pointer;
 }
 
 .bftn-homepage button.btn:hover, .bftn-homepage a.btn:hover {
-    background-color: #e25237;
+    background-color: #cb2dbd;
 }
 
 .bftn-homepage .no-overflow {
@@ -930,7 +932,7 @@ template {
 }
 
 #subHeader h4, #subHeader p{
-    color: white;
+    color: #cb2d6f;
     line-height: 1.5;
 }
 
@@ -945,8 +947,8 @@ template {
     font-size: 24px;
 }
 
-.bftn-homepage .unit p{
-    color: #cccaea;
+.bftn-homepage .unit p, .bftn-homepage .unit p a{
+    color: #14A098;
 }
 
 .bftn-homepage .unit p em {
@@ -955,9 +957,6 @@ template {
     font-weight: normal;
 }
 
-.bftn-homepage .unit p a {
-    color: #cccaea;
-}
 
 .modal-thanks-text h5 {
     font-size: 20px;
