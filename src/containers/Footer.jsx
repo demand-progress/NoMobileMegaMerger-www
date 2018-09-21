@@ -1,54 +1,51 @@
-import React, {Component} from 'react'
-import Logo from './Logo.jsx'
-import axios from 'axios'
-import keys from '../config/keys.js'
+import React, { Component } from 'react';
+import axios from 'axios';
+import Logo from './Logo.jsx';
+import { CONF } from '../config/index';
+import keys from '../config/keys.js';
 
 class Footer extends Component {
-    constructor(props){
-        super(props)
+  constructor(props) {
+    super(props);
+    this.state = {
+      allLogos: null,
+    };
+  }
 
-        this.state = {
-            allLogos: null
-        }
-    }
+  componentDidMount() {
+    const { tipeAuth, tipeId } = keys;
+    axios({
+      method: 'get',
+      url: `https://api.tipe.io/api/v1/document/${CONF.tipeLogoFolderId}`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: tipeAuth,
+        'Tipe-Id': tipeId,
+      },
+    })
+      .then((response) => {
+        const logos = response.data.blocks;
+        this.setState({
+          allLogos: logos,
+        });
+      })
+      .catch(console.error);
+  }
 
-    componentDidMount(){
-        const { tipeAuth, tipeId } = keys;
-        axios({
-            method: "get",
-            url: 'https://api.tipe.io/api/v1/document/5b9c03c07296580013512fd1',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': tipeAuth,
-              'Tipe-Id': tipeId
-            }
-          })
-          .then(response => {
-            const logos = response.data.blocks
-            this.setState({
-              allLogos: logos
-            })
-          })
-          .catch(console.error);
-          
-    }
-    
-    render(){
-        let logos = null
-        let tweet = "https://twitter.com/intent/tweet?text="+this.props.tweet
+  render() {
+    let logos = null;
+    const tweet = 'https://twitter.com/intent/tweet?text=' + this.props.tweet;
 
-        if(this.state.allLogos){
-           let orderedLogos = this.state.allLogos.sort(function(a, b) {
+    if (this.state.allLogos) {
+      const orderedLogos = this.state.allLogos.sort((a, b) => {
                 return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
-            })
-            
-            logos = orderedLogos.map(({ key, name, value}) => {
-              return <Logo key={value.key} alt={name} src={value.url}/>
-                }   
-            )
-        }
-       
-        return (
+            });
+
+      logos = orderedLogos.map(({ key, name, value }) => <Logo key={value.key} alt={name} src={value.url}/>,
+      );
+    }
+
+    return (
             <div id="footer">
                 <div className="footer">
                     <div className="logos-unit">
@@ -56,7 +53,7 @@ class Footer extends Component {
                             <p><br/><br/>Built by:</p> <img src="images/demand-progress.png" />
                             {/* <p>In partnership with: </p> <img src="images/DailyKosLogo.png" /> */}
                         </div>
-                        <div className="logos" style={{display: "flex", flexFlow: "row wrap", justifyContent: "center", alignItems: "center"}}>
+                        <div className="logos" style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center', alignItems: 'center'}}>
                             {logos}
                         </div>
                         <div className="footer-social">
@@ -65,7 +62,6 @@ class Footer extends Component {
                                 <p>
                                     <a className="no-em" href="tel:1-202-681-7582">202-681-7582</a> or <a href="mailto:press@demandprogress.org">press@demandprogress.org</a>
                                 </p>
-
                                 <br/>
                                 <p>
                                     <a href="https://demandprogress.org/privacy-policy/" target="_blank">Our privacy policy</a>
@@ -85,7 +81,7 @@ class Footer extends Component {
                     </div>
                 </div>
             </div>);
-    }
+  }
 }
 
 export default Footer;
