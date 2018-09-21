@@ -15,8 +15,11 @@ class Form extends Component {
     this.state.isMobile = false;
     this.state.loading = false;
     this.state.error = false;
+    this.state.value = '';
     this.onSubmit = this.onSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.updateValueState = this.updateValueState.bind(this);
   }
 
   componentDidMount() {
@@ -32,15 +35,31 @@ class Form extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.fccComment !== this.props.fccComment) {
+      this.updateValueState();
+    }
+  }
+
+  updateValueState() {
+    this.setState({
+      value: this.props.fccComment,
+    });
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
   render() {
     let modal = null;
     let topOfPage = null;
     let middle = null;
     let formButtonText = null;
     const {
-      header, subHeader, formButton, disclaimer, ftcComment, modalHeader, modalText,
+      header, subHeader, formButton, disclaimer, modalHeader, modalText, fccComment,
     } = this.props;
-    console.log(ftcComment);
+
     const subHeaderDiv = (
         <div id="subHeader">
           <Markdown source={ subHeader } />
@@ -68,9 +87,7 @@ class Form extends Component {
           <input type="text" className="form-input" name="zip" placeholder="Your Zipcode" />
         </div>
         <div className="flex" style={{ marginBottom: '20px' }}>
-          <textarea type="text" className="form-input" name="comment" placeholder="Comment" >
-I write to urge the Commission to deny Sprint and T-Mobile’s request to merge. Over the past decade, the wireless industry has aggressively consolidated, leaving consumers with only four choices for national cell phone providers. Sprint and T-Mobile have both carved out a niche in the marketplace by providing lower cost plans, shorter contracts, and other consumer-friendly practices, compared to their rivals AT&T and Verizon. Sprint and T-Mobile compete directly with each other for the same market share, which results in higher quality plans and lower costs for their customers, many of whom are low-income and people of color. A merger between Sprint and T-Mobile would disproportionately and negatively impact these consumers, and lead to higher prices for all wireless customers.
-          </textarea>
+          <textarea key={fccComment} type="text" className="form-input" name="comment" placeholder="Comment" value={this.state.value} onChange={this.handleChange}/>
         </div>
         <div className="flex" style={{ marginTop: '25px' }}>
           <button className="btn">
@@ -204,6 +221,10 @@ I write to urge the Commission to deny Sprint and T-Mobile’s request to merge.
     secondRow[0].value = '';
     secondRow[1].value = '';
     thirdRow[0].value = '';
+
+    this.setState({
+      value: '',
+    });
   }
 
   sendFormToActionKit(fields) {
@@ -232,7 +253,8 @@ I write to urge the Commission to deny Sprint and T-Mobile’s request to merge.
     this.setState({
       loading: false,
       formSubmitted: true,
-    }, () => { this.clearUserForm(); },);
+      value: '',
+    }, () => { this.clearUserForm(); });
 
     const {
       name, email, address1, zip, action_fcc_tmobile_merger_comment,
