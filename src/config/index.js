@@ -1,6 +1,8 @@
 const CONF = {
   actionKitPageShortName: 'No_mobile_mega_merger',
   actionKitPageId: 2461,
+  tipeTextFolderId: '5b9bf25ebafb7a00133672f8',
+  tipeLogoFolderId: '5b9c03c07296580013512fd1',
 };
 const URLS = {
   actionKit: 'https://act.demandprogress.org/act/',
