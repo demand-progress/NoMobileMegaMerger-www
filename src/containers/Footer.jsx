@@ -9,6 +9,7 @@ class Footer extends Component {
     super(props);
     this.state = {
       allLogos: null,
+      dpLogoUrl: null,
     };
   }
 
@@ -25,8 +26,11 @@ class Footer extends Component {
     })
       .then((response) => {
         const logos = response.data.blocks;
+        const swapLogos = logos.filter(element => element.apiId !== 'demandProgressAction');
+        const dpLogoUrl = logos.filter(element => element.apiId === 'demandProgressAction')[0].value.url;
         this.setState({
-          allLogos: logos,
+          allLogos: swapLogos,
+          dpLogoUrl,
         });
       })
       .catch(console.error);
@@ -34,15 +38,12 @@ class Footer extends Component {
 
   render() {
     let logos = null;
-    const tweet = 'https://twitter.com/intent/tweet?text=' + this.props.tweet;
+    const tweet = `https://twitter.com/intent/tweet?text=${this.props.tweet}`;
 
     if (this.state.allLogos) {
-      const orderedLogos = this.state.allLogos.sort((a, b) => {
-                return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
-            });
+      const orderedLogos = this.state.allLogos.sort((a, b) => ((a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0));
 
-      logos = orderedLogos.map(({ key, name, value }) => <Logo key={value.key} alt={name} src={value.url}/>,
-      );
+      logos = orderedLogos.map(({ key, name, value }) => <Logo key={value.key} alt={name} src={value.url}/> );
     }
 
     return (
@@ -53,7 +54,9 @@ class Footer extends Component {
                             <p><br/><br/>Built by:</p> <img src={this.state.dpLogoUrl} />
                             {/* <p>In partnership with: </p> <img src="images/DailyKosLogo.png" /> */}
                         </div>
-                        <div className="logos" style={{display: "flex", flexFlow: "row wrap", justifyContent: "center", alignItems: "center"}}>
+                        <div className="logos" style={{
+                          display: 'flex', flexFlow: 'row wrap', justifyContent: 'center', alignItems: 'center',
+                        }}>
                             {logos}
                         </div>
                         <div className="media-press-social">
@@ -66,7 +69,7 @@ class Footer extends Component {
                                     <img src="images/facebook_white.svg" />
                                     <span>Share on facebook</span>
                                 </a>
-                            </div> 
+                            </div>
                             <div className="press-inquiries">
                                 <h3>For Press inquiries, please contact us at:</h3>
                                 <p>
@@ -77,7 +80,7 @@ class Footer extends Component {
                                 <p>
                                     <a href="https://demandprogress.org/privacy-policy/" target="_blank">Our privacy policy</a>
                                 </p>
-                            </div>        
+                            </div>
                         </div>
                         <div className="orgs">The Nation, The Greenlining Institute, American Family Values
                         </div>
