@@ -472,6 +472,11 @@ template {
     margin-right: 40px;
 }
 
+.media-press-social {
+    display: flex;
+    justify-content: space-between;
+}
+
 .bftn-homepage #footer .press-inquiries {
     width: 40%;
     float: right;
@@ -1108,9 +1113,18 @@ body.modal-open-thanks {
     line-height: 1.2;
 }
 
+.orgs {
+    text-align: center;
+    color: #CCCAEA;
+    height: 100%;
+    width: 100%; 
+}
+
 p {
     font-size: 18px;
 }
+
+
 
 @media screen and (max-width: 930px) {
     .bftn-homepage .hero {
@@ -1346,6 +1360,11 @@ p {
     .bftn-homepage button.btn, .bftn-homepage a.btn {
         width: 100%;
     }
+
+    .media-press-social {
+        flex-direction: column-reverse; 
+    }
+
     #share-button-container{
         width: 80%;
     }
@@ -1541,6 +1560,10 @@ p {
 
     .bftn-homepage .hero .call-action-form h3 {
         font-size: 29px;
+    }
+    
+    .orgs {
+        padding-top: 55px;
     }
 }
 
