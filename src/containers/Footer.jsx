@@ -50,23 +50,13 @@ class Footer extends Component {
                 <div className="footer">
                     <div className="logos-unit">
                         <div className="built-by">
-                            <p><br/><br/>Built by:</p> <img src="images/demand-progress.png" />
+                            <p><br/><br/>Built by:</p> <img src={this.state.dpLogoUrl} />
                             {/* <p>In partnership with: </p> <img src="images/DailyKosLogo.png" /> */}
                         </div>
-                        <div className="logos" style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center', alignItems: 'center'}}>
+                        <div className="logos" style={{display: "flex", flexFlow: "row wrap", justifyContent: "center", alignItems: "center"}}>
                             {logos}
                         </div>
-                        <div className="footer-social">
-                            <div className="press-inquiries">
-                                <h3>For Press inquiries, please contact us at:</h3>
-                                <p>
-                                    <a className="no-em" href="tel:1-202-681-7582">202-681-7582</a> or <a href="mailto:press@demandprogress.org">press@demandprogress.org</a>
-                                </p>
-                                <br/>
-                                <p>
-                                    <a href="https://demandprogress.org/privacy-policy/" target="_blank">Our privacy policy</a>
-                                </p>
-                            </div>
+                        <div className="media-press-social">
                             <div className="social-media">
                                 <a className="twitter" href={tweet} target="_blank">
                                     <img src="images/twitter_white.svg" />
@@ -76,7 +66,20 @@ class Footer extends Component {
                                     <img src="images/facebook_white.svg" />
                                     <span>Share on facebook</span>
                                 </a>
-                            </div>
+                            </div> 
+                            <div className="press-inquiries">
+                                <h3>For Press inquiries, please contact us at:</h3>
+                                <p>
+                                    <a className="no-em" href="tel:1-202-681-7582">202-681-7582</a> or <a href="mailto:press@demandprogress.org">press@demandprogress.org</a>
+                                </p>
+
+                                <br/>
+                                <p>
+                                    <a href="https://demandprogress.org/privacy-policy/" target="_blank">Our privacy policy</a>
+                                </p>
+                            </div>        
+                        </div>
+                        <div className="orgs">The Nation, The Greenlining Institute, American Family Values
                         </div>
                     </div>
                 </div>
