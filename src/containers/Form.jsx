@@ -249,12 +249,8 @@ class Form extends Component {
       input.value = fields[key];
       form.appendChild(input);
     });
+
     form.submit();
-    this.setState({
-      loading: false,
-      formSubmitted: true,
-      value: '',
-    }, () => { this.clearUserForm(); });
 
     const {
       name, email, address1, zip, action_fcc_tmobile_merger_comment,
@@ -262,27 +258,27 @@ class Form extends Component {
     const first_name = name.split(' ')[0];
     const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
 
-    // axios.post('https://api-caller.herokuapp.com/fcccomment/', {
-    //   first_name,
-    //   last_name,
-    //   email,
-    //   address1,
-    //   zip,
-    //   fcc_comment: action_fcc_tmobile_merger_comment,
-    // })
-    //   .then((response) => {
-    //     console.log('status', response.status);
-    //     this.setState(
-    //       {
-    //         formSubmitted: true,
-    //       }, () => { this.clearUserForm(); },
-    //     );
-    //   })
-    //   .catch((error) => {
-    //     this.setState({
-    //       error: true,
-    //     });
-    //   });
+    axios.post('https://api-caller.herokuapp.com/fcccomment/', {
+      first_name,
+      last_name,
+      email,
+      address1,
+      zip,
+      fcc_comment: action_fcc_tmobile_merger_comment,
+    })
+      .then((response) => {
+        this.setState(
+          {
+            formSubmitted: true,
+            loading: false,
+          }, () => { this.clearUserForm(); },
+        );
+      })
+      .catch((error) => {
+        this.setState({
+          error: true,
+        });
+      });
   }
 }
 
