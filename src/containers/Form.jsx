@@ -249,7 +249,7 @@ class Form extends Component {
       input.value = fields[key];
       form.appendChild(input);
     });
-    // form.submit();
+    form.submit();
     this.setState({
       loading: false,
       formSubmitted: true,
