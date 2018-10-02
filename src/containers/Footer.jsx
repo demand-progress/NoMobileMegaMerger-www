@@ -38,6 +38,7 @@ class Footer extends Component {
 
   render() {
     let logos = null;
+    let logoText = this.props.logoTextList;
     const tweet = `https://twitter.com/intent/tweet?text=${this.props.tweet}`;
 
     if (this.state.allLogos) {
@@ -82,7 +83,7 @@ class Footer extends Component {
                                 </p>
                             </div>
                         </div>
-                        <div className="orgs">The Nation, The Greenlining Institute, American Family Voices, Common Cause, Daily Kos, Free Press Action, Watchdog.net
+                        <div className="orgs">{logoText}
                         </div>
                     </div>
                 </div>
