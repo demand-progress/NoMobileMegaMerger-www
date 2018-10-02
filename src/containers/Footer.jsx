@@ -82,7 +82,7 @@ class Footer extends Component {
                                 </p>
                             </div>
                         </div>
-                        <div className="orgs">American Family Values, Common Cause, Daily Kos, Free Press Action, The Greenlining Institute, The Nation
+                        <div className="orgs">The Nation, The Greenlining Institute, American Family Voices, Common Cause, Daily Kos, Free Press Action, Watchdog.net
                         </div>
                     </div>
                 </div>
