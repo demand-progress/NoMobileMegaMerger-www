@@ -54,6 +54,7 @@ class App extends Component {
             modalHeader: data.blocks[7].value,
             modalText: data.blocks[8].value,
             tweet: data.blocks[9].value,
+            logoTextList: data.blocks[10].value,
           },
           loading: false,
         });
@@ -73,6 +74,7 @@ class App extends Component {
       modalHeader,
       modalText,
       tweet,
+      logoTextList,
     } = this.state.textContent;
 
     return (
@@ -88,7 +90,7 @@ class App extends Component {
                 modalHeader={ modalHeader }
                 modalText= { modalText }
                 />
-                <Footer tweet= {tweet} />
+                <Footer tweet= {tweet} logoTextList= {logoTextList} />
             </div>
     );
   }
