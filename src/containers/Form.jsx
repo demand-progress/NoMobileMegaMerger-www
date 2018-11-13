@@ -15,6 +15,7 @@ class Form extends Component {
     this.state.isMobile = false;
     this.state.loading = false;
     this.state.error = false;
+    this.state.errorMessage = '';
     this.state.value = '';
     this.onSubmit = this.onSubmit.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -68,7 +69,7 @@ class Form extends Component {
 
 
     if (this.state.error) {
-      formButtonText = (<span>Error occurred please refresh page</span>);
+      formButtonText = (<span>{this.state.errorMessage}</span>);
     } else if (this.state.loading) {
       formButtonText = (<span>Sending ...</span>);
     } else {
@@ -257,7 +258,7 @@ class Form extends Component {
     } = fields;
     const first_name = name.split(' ')[0];
     const last_name = name.split(' ')[1] ? name.split(' ')[1] : '';
-
+  
     axios.post('https://api-caller.herokuapp.com/fcccomment/', {
       first_name,
       last_name,
@@ -277,6 +278,7 @@ class Form extends Component {
       .catch((error) => {
         this.setState({
           error: true,
+          errorMessage: error.response.data,
         });
       });
   }
